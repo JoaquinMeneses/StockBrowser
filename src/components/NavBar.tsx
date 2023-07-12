@@ -1,16 +1,14 @@
-import React from "react";
-import {
-  Navbar,
-  Collapse,
-  Typography,
-  Button,
-  IconButton,
-} from "@material-tailwind/react";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { Navbar, Collapse, Button, IconButton } from "@material-tailwind/react";
+import EstadoServicio from "../components/EstadoServicio";
 
 export default function Example() {
-  const [openNav, setOpenNav] = React.useState(false);
+  const token = true;
 
-  React.useEffect(() => {
+  const [openNav, setOpenNav] = useState(false);
+
+  useEffect(() => {
     window.addEventListener(
       "resize",
       () => window.innerWidth >= 960 && setOpenNav(false)
@@ -21,14 +19,11 @@ export default function Example() {
     <>
       <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4">
         <div className="flex items-center justify-between text-blue-gray-900">
-          <Typography
-            as="a"
-            href="#"
-            className="mr-4 cursor-pointer py-1.5 font-medium"
-          >
+          <Link to={"/"} className="mr-4 cursor-pointer py-1.5 font-medium">
             Stock Browser
-          </Typography>
+          </Link>
           <div className="flex items-center gap-4">
+            {token ? <EstadoServicio /> : ""}
             <Button
               variant="gradient"
               size="sm"
